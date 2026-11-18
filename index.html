@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f5f7">
+<title>MauzLagi — Gourmet Indonesian Crispy Banana</title>
+<meta name="description" content="Pisang tanduk krispi dengan saus lumer premium — Matcha, Tiramisu, Coklat Belgia, dan Stroberi. Digoreng saat pesanan masuk, pesan mudah lewat WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:title" content="MauzLagi — Sekali Gigit, Pasti MauzLagi.">
+<meta property="og:description" content="Pisang tanduk krispi dengan saus lumer premium, digoreng saat pesanan masuk.">
+<link rel="icon" href="MauzLagi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
+<link rel="stylesheet" href="mauzlagi.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="home">
+<a class="skip-link" href="#main">Lewati ke konten</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="MauzLagi — Beranda">MauzLagi<span class="brand-dot"></span></a>
+    <nav class="nav" id="site-nav" aria-label="Navigasi utama">
+      <a href="index.html" aria-current="page">Beranda</a>
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kustomisasi.html">Kustomisasi</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="checkout.html" aria-label="Keranjang belanja"><span class="ms">shopping_bag</span><span class="cart-badge" data-cart-count hidden>0</span></a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu"><span class="ms">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow-pill"><span class="dot"></span>Signature crispy banana</span>
+        <h1 id="hero-title">Sekali Gigit, Pasti MauzLagi.</h1>
+        <p>Harmoni pisang tanduk renyah dengan lelehan saus artisanal gourmet dalam kemasan presisi.</p>
+      </div>
+
+      <div class="stage" id="stage" aria-roledescription="carousel" aria-label="Varian rasa MauzLagi">
+        <div id="slides"></div>
+        <div class="stage-scrim"></div>
+        <div class="spec">
+          <div class="spec-main">
+            <span class="spec-dot" id="flavor-dot"></span>
+            <div>
+              <div class="spec-title"><strong id="flavor-name">Matcha Bliss</strong><span class="spec-badge" id="flavor-badge">Best Seller</span></div>
+              <p class="spec-desc" id="flavor-desc"></p>
+            </div>
+          </div>
+          <div class="spec-price"><small>Harga porsi</small><strong id="flavor-price">Rp 25.000</strong></div>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs" role="tablist" aria-label="Pilih rasa"></div>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" id="hero-cta" href="katalog.html"><span id="cta-label">Lihat semua menu</span><span class="ms">arrow_forward</span></a>
+      </div>
+      <noscript><p style="margin-top:20px"><a href="katalog.html">Lihat katalog menu</a></p></noscript>
+    </div>
+  </section>
+
+  <section class="section" data-reveal aria-labelledby="quality-title">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="kicker">Keunggulan kualitas</span>
+          <h2 id="quality-title">Standar emas camilan pisang.</h2>
+        </div>
+        <p>Penggorengan suhu terkendali menjaga rasa manis alami pisang tanpa minyak berlebih.</p>
+      </div>
+
+      <div class="bento">
+        <div class="tile tile-span2">
+          <div>
+            <div class="tile-top"><span class="pill">Origin: Lumajang Premium</span><span class="ms deco">eco</span></div>
+            <h3>100% Pisang Tanduk Pilihan</h3>
+            <p>Manis alami dan digoreng dadakan biar tekstur luarnya tetap renyah maksimal, empuk karamel di dalam.</p>
+          </div>
+          <div class="tile-stats">
+            <div><span>Tingkat renyah</span><strong>12 jam tahan</strong></div>
+            <div class="sep"></div>
+            <div><span>Tekstur</span><strong>Renyah luar, empuk dalam</strong></div>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div>
+            <div class="tile-top"><span class="pill">Viskositas presisi</span><span class="ms deco">water_drop</span></div>
+            <h3>Saus Lumer Melimpah</h3>
+            <p>Racikan saus kental premium dengan takaran melimpah di setiap gigitan, tidak encer dan tidak bikin enek.</p>
+          </div>
+          <div class="tile-stats"><div><span>Formulasi khusus</span><strong>Rasio 1:1 topping</strong></div></div>
+        </div>
+
+        <div class="tile tile-span3">
+          <div class="tile-row">
+            <div class="tile-icon"><span class="ms">local_fire_department</span></div>
+            <div>
+              <h3>Dibuat Fresh Setiap Order</h3>
+              <p>Baru diproses begitu pesananmu masuk, dikemas dengan ventilasi termal agar pisang sampai di tanganmu tetap hangat dan renyah.</p>
+            </div>
+          </div>
+          <div class="tile-stats">
+            <div><span>Estimasi masak</span><strong>5–7 menit</strong></div>
+            <div class="sep"></div>
+            <div><span>Suhu saji</span><strong>65°C</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0" data-reveal aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-card">
+        <div>
+          <span class="kicker">Puas dalam sekali klik</span>
+          <h2 id="cta-title">Udah kebayang lumer-nya?</h2>
+          <p>Pilih varian favoritmu sekarang, lalu atur porsi dan topping sesukamu.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-glass btn-lg" href="kustomisasi.html">Kustomisasi rasa</a>
+          <a class="btn btn-primary btn-lg" href="katalog.html">Lihat semua menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand">MauzLagi<span class="brand-dot"></span></span>
+      <p>Gourmet crispy banana — digoreng saat pesanan masuk.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kebijakan.html#privasi">Privasi</a>
+      <a href="kebijakan.html#syarat">Syarat &amp; Ketentuan</a>
+      <a href="#" data-wa-link>Kontak WhatsApp</a>
+    </nav>
+    <p class="footer-copy">© <span data-year></span> MauzLagi. Hak cipta dilindungi.</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="mauzlagi-ui.js"></script>
+<script src="mauzlagi-pages.js"></script>
+</body>
+</html>

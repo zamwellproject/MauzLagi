@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f5f7">
+<title>Checkout — MauzLagi</title>
+<meta name="description" content="Selesaikan pesanan pisang krispi MauzLagi dan kirim lewat WhatsApp.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="MauzLagi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
+<link rel="stylesheet" href="mauzlagi.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="checkout">
+<a class="skip-link" href="#main">Lewati ke konten</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="MauzLagi — Beranda">MauzLagi<span class="brand-dot"></span></a>
+    <nav class="nav" id="site-nav" aria-label="Navigasi utama">
+      <a href="index.html">Beranda</a>
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kustomisasi.html">Kustomisasi</a>
+      <a href="checkout.html" aria-current="page">Checkout</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="checkout.html" aria-label="Keranjang belanja"><span class="ms">shopping_bag</span><span class="cart-badge" data-cart-count hidden>0</span></a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu"><span class="ms">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container checkout">
+  <a class="backlink" href="katalog.html"><span class="ms">arrow_back</span>Kembali ke katalog</a>
+  <span class="kicker" style="display:block">Hampir jadi milikmu · MauzLagi</span>
+  <h1 class="page-title">Selesaikan<br>pesananmu.</h1>
+
+  <div class="checkout-grid">
+    <div>
+      <section class="panel" aria-labelledby="h-cart">
+        <div class="panel-head"><h2 id="h-cart">Keranjang belanja</h2><button class="link-btn" id="clear-cart" type="button" hidden>Kosongkan</button></div>
+        <div id="cart-items"></div>
+      </section>
+
+      <form id="order-form" novalidate autocomplete="on">
+        <section class="panel" aria-labelledby="h-recipient">
+          <h2 id="h-recipient">Informasi penerima</h2>
+          <div class="two-col">
+            <div class="field">
+              <label for="nama">Nama penerima</label>
+              <input id="nama" name="nama" autocomplete="name" placeholder="Nama lengkap" required>
+              <small class="err" id="err-nama" role="alert"></small>
+            </div>
+            <div class="field">
+              <label for="telepon">Nomor WhatsApp</label>
+              <input id="telepon" name="telepon" type="tel" autocomplete="tel" inputmode="tel" placeholder="08xxxxxxxxxx" required>
+              <small class="err" id="err-telepon" role="alert"></small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="alamat">Alamat pengiriman lengkap</label>
+            <textarea id="alamat" name="alamat" rows="3" autocomplete="street-address" placeholder="Jalan, nomor rumah, kelurahan, kecamatan, kota"></textarea>
+            <small class="err" id="err-alamat" role="alert"></small>
+          </div>
+          <div class="field">
+            <label for="instruksi">Catatan untuk kurir (opsional)</label>
+            <input id="instruksi" name="instruksi" placeholder="Patokan lokasi atau instruksi tambahan">
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="h-ship">
+          <h2 id="h-ship">Pengiriman &amp; pembayaran</h2>
+          <div class="field">
+            <label for="kurir">Preferensi pengiriman</label>
+            <select id="kurir" name="kurir">
+              <option value="delivery">Kurir instan — konfirmasi admin</option>
+              <option value="pickup">Ambil sendiri — konfirmasi admin</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="pembayaran">Metode pembayaran</label>
+            <select id="pembayaran" name="pembayaran">
+              <option>Konfirmasi metode pembayaran via WhatsApp</option>
+              <option>Transfer bank</option>
+              <option>E-wallet</option>
+              <option>Tunai saat pengambilan (jika tersedia)</option>
+            </select>
+          </div>
+          <p class="muted">Ongkos kirim dan ketersediaan metode pembayaran dikonfirmasi admin sebelum pesanan diproses.</p>
+        </section>
+      </form>
+    </div>
+
+    <aside class="panel summary" aria-labelledby="h-sum">
+      <h2 id="h-sum">Ringkasan pembayaran</h2>
+      <div class="sum-row"><span>Jumlah produk</span><strong id="sum-count">0 item</strong></div>
+      <div class="sum-row"><span>Subtotal produk</span><strong id="sum-subtotal">Rp 0</strong></div>
+      <div class="sum-row"><span>Pengiriman</span><strong>Konfirmasi admin</strong></div>
+      <div class="sum-row sum-total"><span>Total sementara</span><strong id="sum-total">Rp 0</strong></div>
+      <p class="muted">Total akhir menunggu konfirmasi ongkos kirim dari admin MauzLagi.</p>
+      <button class="btn btn-primary btn-block" id="send-order" type="submit" form="order-form" disabled>Kirim pesanan via WhatsApp <span class="ms">arrow_forward</span></button>
+      <button class="btn btn-secondary btn-block" id="copy-order" type="button" disabled style="margin-top:10px"><span class="ms">content_copy</span>Salin teks pesanan</button>
+      <p class="muted center">Pesanan baru terkirim setelah kamu menekan Kirim di WhatsApp.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand">MauzLagi<span class="brand-dot"></span></span>
+      <p>Gourmet crispy banana — digoreng saat pesanan masuk.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kebijakan.html#privasi">Privasi</a>
+      <a href="kebijakan.html#syarat">Syarat &amp; Ketentuan</a>
+      <a href="#" data-wa-link>Kontak WhatsApp</a>
+    </nav>
+    <p class="footer-copy">© <span data-year></span> MauzLagi. Hak cipta dilindungi.</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="mauzlagi-ui.js"></script>
+<script src="mauzlagi-pages.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f5f7">
+<title>Kustomisasi Pesanan — MauzLagi</title>
+<meta name="description" content="Atur porsi pisang, volume saus, dan catatan pesananmu sebelum masuk keranjang MauzLagi.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="MauzLagi.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block">
+<link rel="stylesheet" href="mauzlagi.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="custom">
+<a class="skip-link" href="#main">Lewati ke konten</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="MauzLagi — Beranda">MauzLagi<span class="brand-dot"></span></a>
+    <nav class="nav" id="site-nav" aria-label="Navigasi utama">
+      <a href="index.html">Beranda</a>
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kustomisasi.html" aria-current="page">Kustomisasi</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="checkout.html" aria-label="Keranjang belanja"><span class="ms">shopping_bag</span><span class="cart-badge" data-cart-count hidden>0</span></a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu"><span class="ms">menu</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="container cfg">
+  <div class="cfg-top">
+    <a class="backlink" href="katalog.html"><span class="ms">arrow_back</span>Kembali ke katalog</a>
+    <span class="pill">Konfigurasi produk</span>
+  </div>
+
+  <div class="cfg-sheet">
+    <div class="cfg-hero">
+      <div class="cfg-img">
+        <img id="cfg-img" src="" alt="" width="176" height="176">
+        <span class="chip" id="cfg-badge"></span>
+      </div>
+      <div class="cfg-info">
+        <div class="cfg-meta"><span class="pill pill-yellow">Gourmet Series</span><span class="fresh"><span class="dot"></span>Fresh made to order</span></div>
+        <h1 id="cfg-name">Pisang Krispi</h1>
+        <p id="cfg-desc"></p>
+        <div class="cfg-price"><small>Harga dasar</small><strong id="cfg-base"></strong><small style="text-transform:none;letter-spacing:0">/ box</small></div>
+      </div>
+    </div>
+
+    <div class="flavor-switch" id="flavor-switch" aria-label="Ganti rasa"></div>
+
+    <div class="cfg-body">
+      <section class="cfg-sec" aria-labelledby="h-portion">
+        <div class="sec-head">
+          <div><h2 id="h-portion">Tambah porsi pisang</h2><p>Pilih tambahan jumlah pisang krispi dalam satu kotak saji.</p></div>
+          <span class="tag-opt">Opsional</span>
+        </div>
+        <div class="opt-grid" id="portion-options" role="radiogroup" aria-labelledby="h-portion"></div>
+      </section>
+
+      <section class="cfg-sec" aria-labelledby="h-topping">
+        <div class="sec-head">
+          <div><h2 id="h-topping">Tambah volume topping &amp; saus</h2><p>Ekstra saus lumer untuk kepuasan cocolan maksimal.</p></div>
+          <span class="tag-opt">Opsional</span>
+        </div>
+        <div class="opt-grid" id="topping-options" role="radiogroup" aria-labelledby="h-topping"></div>
+      </section>
+
+      <section class="cfg-sec" aria-labelledby="h-note">
+        <div class="sec-head"><h2 id="h-note">Catatan pesanan</h2><span class="tag-opt">Maks. 120 karakter</span></div>
+        <div class="note-box">
+          <label for="order-note" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Catatan pesanan</label>
+          <textarea id="order-note" rows="2" maxlength="120" placeholder="Contoh: saus dipisah dalam cup terpisah, tambah garpu…"></textarea>
+          <div class="note-foot"><span>Permintaan disesuaikan dengan ketersediaan dapur.</span><span id="note-count">0/120</span></div>
+        </div>
+      </section>
+
+      <section class="cfg-sec" aria-labelledby="h-sum">
+        <div class="sum-box">
+          <h3 id="h-sum">Ringkasan pilihanmu</h3>
+          <div class="sum-line"><span id="sum-base-label"></span><b id="sum-base"></b></div>
+          <div class="sum-line"><span id="sum-portion-label"></span><b id="sum-portion"></b></div>
+          <div class="sum-line"><span id="sum-topping-label"></span><b id="sum-topping"></b></div>
+          <div class="sum-line total"><span>Harga per box</span><b id="sum-unit"></b></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="cfg-dock">
+      <div class="dock-left">
+        <div class="stepper">
+          <button type="button" id="btn-minus" aria-label="Kurangi jumlah"><span class="ms">remove</span></button>
+          <output id="qty-display" aria-live="polite">1</output>
+          <button type="button" id="btn-plus" aria-label="Tambah jumlah"><span class="ms">add</span></button>
+        </div>
+        <div class="subtotal"><small>Subtotal</small><strong id="subtotal-display">Rp 0</strong></div>
+      </div>
+      <button class="btn btn-primary btn-lg cfg-add" id="btn-add-to-cart" type="button">
+        <span>Masukin keranjang</span><span class="dot" style="background:rgba(96,71,0,.4)"></span><span id="btn-price-display">Rp 0</span><span class="ms">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="trust-item"><div class="tile-icon"><span class="ms">local_fire_department</span></div><div><strong>Digoreng langsung</strong><span class="sm">Diproses saat pesanan diterima</span></div></div>
+    <div class="trust-item"><div class="tile-icon"><span class="ms">eco</span></div><div><strong>100% pisang tanduk asli</strong><span class="sm">Kematangan optimal, manis alami</span></div></div>
+    <div class="trust-item"><div class="tile-icon"><span class="ms">verified</span></div><div><strong>Kemasan termal khusus</strong><span class="sm">Menjaga kerenyahan hingga tiba</span></div></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand">MauzLagi<span class="brand-dot"></span></span>
+      <p>Gourmet crispy banana — digoreng saat pesanan masuk.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="katalog.html">Menu &amp; Katalog</a>
+      <a href="kebijakan.html#privasi">Privasi</a>
+      <a href="kebijakan.html#syarat">Syarat &amp; Ketentuan</a>
+      <a href="#" data-wa-link>Kontak WhatsApp</a>
+    </nav>
+    <p class="footer-copy">© <span data-year></span> MauzLagi. Hak cipta dilindungi.</p>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="mauzlagi-ui.js"></script>
+<script src="mauzlagi-pages.js"></script>
+</body>
+</html>
