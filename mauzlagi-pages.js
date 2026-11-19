@@ -11,61 +11,184 @@
   if (run) run();
 
   /* ------------------------------------------------------------------ Beranda */
-  function initHome() {
-    const P = D.products;
-    const hero = $('#hero'), slidesEl = $('#slides'), tabsEl = $('#tabs');
-    const cta = $('#hero-cta'), ctaLabel = $('#cta-label');
+  
+function initHome() {
+  // Ambil hanya produk yang diizinkan tampil di Hero
+  const P = D.products
+    .filter(p => p.showInHero === true)
+    .sort((a, b) => (a.heroOrder || 999) - (b.heroOrder || 999));
 
-    slidesEl.innerHTML = P.map((p, i) =>
-      '<div class="slide"><img src="' + esc(p.image) + '" alt="Pisang krispi ' + esc(p.name) + ' MauzLagi" width="900" height="500" decoding="async"' +
-      (i === 0 ? ' fetchpriority="high"' : ' loading="lazy"') + '></div>').join('');
-    tabsEl.innerHTML = P.map((p, i) =>
-      '<button class="tab" type="button" role="tab" data-i="' + i + '" aria-selected="false"><span class="fill"></span><span class="tab-label">' + esc(p.flavor) + '</span></button>').join('');
+  const hero = $('#hero'),
+        slidesEl = $('#slides'),
+        tabsEl = $('#tabs');
 
-    const slides = $$('.slide', slidesEl), tabs = $$('.tab', tabsEl), fills = $$('.fill', tabsEl);
-    const DURATION = 4500;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let idx = 0, elapsed = 0, last = 0, hold = false;
+  const cta = $('#hero-cta'),
+        ctaLabel = $('#cta-label');
 
-    function show(i) {
-      idx = i; elapsed = 0;
-      const p = P[i];
-      slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
-      tabs.forEach((t, n) => {
-        t.setAttribute('aria-selected', String(n === i));
-        fills[n].style.transform = n === i && reduce ? 'scaleX(1)' : 'scaleX(0)';
-      });
-      $('#flavor-name').textContent = p.name;
-      $('#flavor-badge').textContent = p.badge;
-      $('#flavor-desc').textContent = p.desc;
-      $('#flavor-price').textContent = fmt(p.price);
-      $('#flavor-dot').style.background = p.dot;
-      ctaLabel.textContent = 'Pesan rasa ' + p.flavor + ' sekarang';
-      cta.href = 'kustomisasi.html?produk=' + encodeURIComponent(p.id);
-      hero.style.setProperty('--tint', p.tint);
-    }
+  if (!slidesEl || !tabsEl || !P.length) return;
 
-    function tick(now) {
-      const dt = Math.min(now - (last || now), 100);
-      last = now;
-      if (!hold && !document.hidden) elapsed += dt;
+  // Hero slides
+  slidesEl.innerHTML = P.map((p, i) =>
+    '<div class="slide"><img src="' + esc(p.image) +
+    '" alt="Pisang krispi ' + esc(p.name) +
+    ' MauzLagi" width="900" height="500" decoding="async"' +
+    (i === 0
+      ? ' fetchpriority="high"'
+      : ' loading="lazy"') +
+    '></div>'
+  ).join('');
+
+  // Flavor Selector
+  tabsEl.innerHTML = P.map((p, i) =>
+    '<button class="tab" type="button" role="tab" data-i="' +
+    i + '" aria-selected="false">' +
+    '<span class="fill"></span>' +
+    '<span class="tab-label">' + esc(p.flavor) + '</span>' +
+    '</button>'
+  ).join('');
+
+  const slides = $$('.slide', slidesEl),
+        tabs = $$('.tab', tabsEl),
+        fills = $$('.fill', tabsEl);
+
+  const DURATION = 4500;
+  const reduce = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  let idx = 0,
+      elapsed = 0,
+      last = 0,
+      hold = false,
+      rafId = 0;
+
+  function show(i) {
+    idx = ((i % P.length) + P.length) % P.length;
+    elapsed = 0;
+
+    const p = P[idx];
+
+    slides.forEach((s, n) =>
+      s.classList.toggle('is-active', n === idx)
+    );
+
+    tabs.forEach((t, n) => {
+      t.setAttribute('aria-selected', String(n === idx));
+      fills[n].style.transform =
+        n === idx && reduce
+          ? 'scaleX(1)'
+          : 'scaleX(0)';
+    });
+
+    $('#flavor-name').textContent = p.name;
+    $('#flavor-badge').textContent = p.badge || '';
+    $('#flavor-desc').textContent = p.desc || '';
+    $('#flavor-price').textContent = fmt(p.price);
+    $('#flavor-dot').style.background = p.dot || '#222';
+
+    ctaLabel.textContent =
+      'Pesan rasa ' + p.flavor + ' sekarang';
+
+    cta.href = 'kustomisasi.html?produk=' +
+      encodeURIComponent(p.id);
+
+    hero.style.setProperty(
+      '--tint',
+      p.tint || 'transparent'
+    );
+  }
+
+  function tick(now) {
+    if (!last) last = now;
+
+    const dt = Math.min(now - last, 100);
+    last = now;
+
+    if (!hold && !document.hidden) {
+      elapsed += dt;
+
       const pr = Math.min(elapsed / DURATION, 1);
       fills[idx].style.transform = 'scaleX(' + pr + ')';
-      if (pr >= 1) show((idx + 1) % P.length);
-      requestAnimationFrame(tick);
+
+      if (pr >= 1) show(idx + 1);
     }
 
-    tabsEl.addEventListener('click', e => {
-      const t = e.target.closest('.tab');
-      if (t) show(Number(t.dataset.i));
-    });
-    const stage = $('#stage');
-    ['pointerenter', 'focusin'].forEach(ev => stage.addEventListener(ev, () => { hold = true; }));
-    ['pointerleave', 'focusout'].forEach(ev => stage.addEventListener(ev, () => { hold = false; }));
-
-    show(0);
-    if (!reduce) requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
   }
+
+  
+function resumeAutoSlide() {
+  hold = false;
+  last = 0;
+
+  if (!reduce) {
+    // Pastikan tidak ada animasi lama yang tertinggal
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+
+    // Jalankan kembali autoplay
+    rafId = requestAnimationFrame(tick);
+  }
+}
+
+
+  // Klik Flavor Selector
+  tabsEl.addEventListener('click', e => {
+    const t = e.target.closest('.tab');
+
+    if (t) {
+      hold = false;
+      show(Number(t.dataset.i));
+    }
+  });
+
+  // Pause ketika Hero sedang diinteraksikan
+  const stage = $('#stage');
+
+  if (stage) {
+    stage.addEventListener('pointerenter', e => {
+      if (e.pointerType === 'mouse') hold = true;
+    });
+
+    stage.addEventListener('pointerleave', e => {
+      if (e.pointerType === 'mouse') {
+        hold = false;
+        last = 0;
+      }
+    });
+
+    stage.addEventListener('focusin', () => {
+      hold = true;
+    });
+
+    stage.addEventListener('focusout', () => {
+      hold = false;
+      last = 0;
+    });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      hold = false;
+      last = 0;
+    } else {
+      resumeAutoSlide();
+    }
+  });
+
+  window.addEventListener('focus', resumeAutoSlide);
+  window.addEventListener('pageshow', resumeAutoSlide);
+
+  // Mulai dari produk Hero urutan pertama
+  show(0);
+
+  if (!reduce) {
+    rafId = requestAnimationFrame(tick);
+  }
+}
+
 
   /* ------------------------------------------------------------------ Katalog */
   function initCatalog() {

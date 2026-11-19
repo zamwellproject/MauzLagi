@@ -10,6 +10,8 @@ window.MauzData = (() => {
       flavor: 'Matcha',
       price: 25000,
       badge: 'Best Seller',
+showInHero: true,
+heroOrder: 1,
       weight: '220g / 6 pcs',
       tag: 'Uji Matcha 100%',
       sauce: 'matcha',
@@ -26,6 +28,8 @@ window.MauzData = (() => {
       flavor: 'Tiramisu',
       price: 26000,
       badge: "Chef's Pick",
+showInHero: true,
+heroOrder: 2,
       weight: '220g / 6 pcs',
       tag: 'Espresso Dust',
       sauce: 'tiramisu',
@@ -42,6 +46,8 @@ window.MauzData = (() => {
       flavor: 'Coklat',
       price: 25000,
       badge: 'Signature',
+showInHero: true,
+heroOrder: 3,
       weight: '220g / 6 pcs',
       tag: 'Dark Couverture',
       sauce: 'coklat',
@@ -58,6 +64,8 @@ window.MauzData = (() => {
       flavor: 'Stroberi',
       price: 25000,
       badge: 'Seasonal',
+showInHero: true,
+heroOrder: 4,
       weight: '220g / 6 pcs',
       tag: 'Real Berry Pulp',
       sauce: 'stroberi',
@@ -67,7 +75,7 @@ window.MauzData = (() => {
       popular: 4,
       chef: 4,
       image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB6oKDcGRd2WJ0QB2z0KUbaGGASy8RR5jxdn8KLel2XH8cOPnuQn9n0OBjd712KyRxwYKRE7QnLmylblYlSOeAnsG2lKXGAD0YoVt1Zqp3THVxCk7DBmru3STCt-xf9C7lfzh6KE2Wk8a4SbdcJSzyKz-c8Q1LBjbiRhMnZ7IYCOQZ-48FzSUx3azQusNtotqQI_MsAAPQ73VTjtQ6AQ2uHhuhbLzDH0KDABHypEUA'
-    }
+    },
   ];
 
   const portions = [

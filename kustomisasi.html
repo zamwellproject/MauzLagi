@@ -8,6 +8,8 @@
 <meta name="description" content="Atur porsi pisang, volume saus, dan catatan pesananmu sebelum masuk keranjang MauzLagi.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="MauzLagi.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="MauzLagi.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
@@ -137,5 +139,12 @@
 <script src="cart.js"></script>
 <script src="mauzlagi-ui.js"></script>
 <script src="mauzlagi-pages.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
 </body>
 </html>

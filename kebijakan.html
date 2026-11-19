@@ -7,6 +7,8 @@
 <title>Privasi &amp; Syarat Ketentuan — MauzLagi</title>
 <meta name="description" content="Kebijakan privasi dan syarat & ketentuan pemesanan di MauzLagi.">
 <link rel="icon" href="MauzLagi.png" type="image/png">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="MauzLagi.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
@@ -81,5 +83,12 @@
 <script src="products.js"></script>
 <script src="cart.js"></script>
 <script src="mauzlagi-ui.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
 </body>
 </html>
